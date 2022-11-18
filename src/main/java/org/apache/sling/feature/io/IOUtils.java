@@ -203,7 +203,7 @@ public class IOUtils {
         }
 
         if ((result == null || !result.exists()) && cache) {
-            File tmp = File.createTempFile("jar", ".jar", tmpDir);
+            File tmp = Files.createTempFile(tmpDir.toPath(), "jar", ".jar").toFile();
             tmp.deleteOnExit();
             try (InputStream input = url.openStream(); OutputStream output = new FileOutputStream(tmp)) {
                 byte[] buffer =new byte[64 * 1024];

@@ -34,6 +34,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -66,7 +67,7 @@ public class IOUtilsTest {
     }
 
     @Test public void testGetFileFromURL() throws IOException {
-        File file = File.createTempFile("IOUtilsTest", ".test");
+        File file = Files.createTempFile("IOUtilsTest", ".test").toFile();
 
         try {
             try (PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
@@ -104,7 +105,7 @@ public class IOUtilsTest {
         } finally {
             file.delete();
         }
-        File jarFile = File.createTempFile("IOUtilsTes", ".jar");
+        File jarFile = Files.createTempFile("IOUtilsTes", ".jar").toFile();
         try {
 
             try (JarOutputStream output = new JarOutputStream(new FileOutputStream(jarFile))) {
@@ -124,7 +125,7 @@ public class IOUtilsTest {
     }
 
     @Test public void testGetJarFileFromURL() throws IOException {
-        File jarFile = File.createTempFile("IOUtilsTest", ".jar");
+        File jarFile = Files.createTempFile("IOUtilsTest", ".jar").toFile();
 
         try {
             try (JarOutputStream output = new JarOutputStream(new FileOutputStream(jarFile))) {
